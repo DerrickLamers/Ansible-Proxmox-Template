@@ -1,15 +1,15 @@
 ---
 - name: Prepare Proxmox template with Cloud-Init
-  hosts: your-proxmox-node
+  hosts: 10.10.0.24
   become: false
   vars:
-    proxmox_node: "your-proxmox-node"
-    proxmox_storage: "truenas"  # the storage id where the images and VMs will be stored # default is "local-lvm"
+    proxmox_node: "10.10.0.24"
+    proxmox_storage: "vmdata"  # the storage id where the images and VMs will be stored # default is "local-lvm"
 
     # Cloud image settings
-    cloud_image_url: "https://cloud-images.ubuntu.com/releases/jammy/release/ubuntu-22.04-server-cloudimg-amd64.img"
+    cloud_image_url: "https://cloud-images.ubuntu.com/releases/noble/release/ubuntu-24.04-server-cloudimg-amd64.img"
     cloud_image_storage: "/var/lib/vz/template/iso"
-    cloud_image_name: "ubuntu-22.04-server-cloudimg-amd64.img"
+    cloud_image_name: "ubuntu-24.04-server-cloudimg-amd64.img"
 
     # VM settings
     vm_id: 5001  # make sure this VM ID is not in use on your Proxmox
@@ -20,7 +20,7 @@
     UEFI: true
 
     # Template Name
-    template_name: "ubuntu-22.04-cloudinit-template"
+    template_name: "ubuntu-24.04-cloudinit-template"
 
     # Cloud-Init User Data settings
     user_data_file: "user-data.yaml.j2"  # make sure this file exists and contains your cloud-init user data
@@ -28,7 +28,7 @@
     user_data_file_storage_path: "/mnt/pve/snippets/" # default is "/var/lib/vz/snippets"
 
     # Cloud-Init login settings
-    ciuser: "serveradmin"
+    ciuser: "derrick"
     # cipassword - stored in a vault file
     # sshkey - stored in a vault file
 
